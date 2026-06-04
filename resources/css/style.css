@@ -12,3 +12,13 @@ min-height: 100vh;
 .height-custom {
     min-height: 50vh;
 }
+
+.card-w {
+    width: 18rem; 
+}
+
+.custom-bg {
+    background: rgba(0, 0, 0, 0.4); 
+    min-height: 40vh; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

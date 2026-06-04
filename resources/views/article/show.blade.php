@@ -1,0 +1,66 @@
+<x-layout>
+    <div class="container">
+        
+        <div class="row height-custom justify-content-center align-items-center text-center">
+            <div class="col-12">
+                <h1 class="display-4 text-white">
+                    Dettaglio dell'articolo: <span class="text-warning fw-bold">{{ $article->title }}</span>
+                </h1>
+            </div>
+        </div>
+
+        <div class="row height-custom justify-content-center align-items-center py-5">
+            
+            <div class="col-12 col-md-6 mb-3">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        
+                        <div class="carousel-item active">
+                            <img src="https://picsum.photos/400" class="d-block w-100 rounded shadow" alt="Immagine dell'articolo">
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/400" class="d-block w-100 rounded shadow" alt="Immagine dell'articolo">
+                        </div>
+                        
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/400" class="d-block w-100 rounded shadow" alt="Immagine dell'articolo">
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3 height-custom text-center text-md-start text-white">
+                <div class="bg-dark bg-opacity-50 p-4 rounded-4 shadow border border-secondary d-flex flex-column justify-content-center h-75">
+                    
+                    <h2 class="display-5 mb-3">
+                        <span class="fw-bold text-warning">Titolo:</span> {{ $article->title }}
+                    </h2>
+                    
+                    <h4 class="fw-bold mb-3 text-success">
+                        Prezzo: {{ $article->price }} €
+                    </h4>
+                    
+                    <hr class="border-secondary">
+                    
+                    <h5 class="text-warning fw-semibold mt-2">Descrizione:</h5>
+                    <p class="fs-5 text-white-50 leading-relaxed">
+                        {{ $article->description }}
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</x-layout>

@@ -1,28 +1,45 @@
 <x-layout>
-
-<div class="container-fluid p-0 mt-n4"> {{-- container-fluid p-0 per eliminare i margini e i pad esterni --}}
     
-    <div class="position-relative d-flex align-items-center justify-content-center text-center welcome" 
-         >
-        
-        <div class="container text-white">
-            <h1 class="display-1 fw-bold text-uppercase mb-3">
-                Benvenuto su <span class="text-warning">Presto.it</span>
-            </h1>
-            <p class="lead fs-3 mb-4 text-white-50">
-                Il posto più veloce per comprare e vendere usato vicino a te.
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="#" class="btn btn-warning btn-lg px-4 gap-3 fw-bold text-dark">Esplora Annunci</a>
-                <a href="{{ route('create.article') }}" class="btn btn-outline-light btn-lg px-4">Vendi Ora</a>
+    <div class="container-fluid p-0 ">
+        <div class="d-flex align-items-center justify-content-center text-center py-5 position-relative overflow-hidden custom-bg">
+            <div class="container text-white">
+                <h1 class="display-2 fw-bold text-uppercase mb-2">
+                    Benvenuto su <span class="text-warning">Presto.it</span>
+                </h1>
+                <p class="lead fs-4 text-white-50 mb-0">
+                    Il posto più veloce per comprare, vendere e fare affari in totale sicurezza.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row ">
+            <div class="col-12">
+                <h2 class="fw-bold text-uppercase text-white border-start border-warning border-4 ps-3">
+                    Ultimi Articoli Pubblicati
+                </h2>
             </div>
         </div>
 
+        <div class="row height-custom justify-content-center align-items-center py-5">
+            @forelse ($articles as $article)
+                <div class="col-12 col-md-3">
+             
+                    <x-card :article="$article" />
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="text-center py-5 bg-dark bg-opacity-50 rounded-4 border border-secondary p-4 shadow">
+                        <i class="fas fa-boxes text-warning display-4 mb-3"></i>
+                        <h3 class="text-white-50 fw-semibold">
+                            Non sono ancora stati creati articoli
+                        </h3>
+                        <p class="text-white small mb-0 mt-2">Sii il primo a pubblicarne uno! Registrati e crea un articolo.</p>
+                    </div>
+                </div>
+            @endforelse
+        </div>
     </div>
-
-</div>
-
-
-
 
 </x-layout>
