@@ -1,1 +1,4 @@
 //
+import './script'
+
+import 'bootstrap'
