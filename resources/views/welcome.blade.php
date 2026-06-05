@@ -1,17 +1,35 @@
 <x-layout>
-    
-    <div class="container-fluid p-0 ">
-        <div class="d-flex align-items-center justify-content-center text-center py-5 position-relative overflow-hidden custom-bg">
-            <div class="container text-white">
-                <h1 class="display-2 fw-bold text-uppercase mb-2">
-                    Benvenuto su <span class="text-warning">Presto.it</span>
-                </h1>
-                <p class="lead fs-4 text-white-50 mb-0">
-                    Il posto più veloce per comprare, vendere e fare affari in totale sicurezza.
-                </p>
-            </div>
+  
+   <div class="container-fluid p-0 ">
+    <div class="d-flex align-items-center justify-content-center text-center py-5 position-relative overflow-hidden custom-bg">
+        <div class="container text-white">
+            
+            <!-- messaggio di errore zona revisori -->
+            @if (session()->has('errorMessage'))
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="alert alert-danger text-center shadow rounded w-50">
+                        <i class="fas fa-exclamation-triangle me-2"></i>{{ session('errorMessage') }}
+                    </div>
+                </div>
+            @endif
+            <!-- messaggio di successo email revisori -->
+            @if (session()->has('message'))
+    <div class="alert alert-success text-center shadow rounded w-50">
+        {{ session('message') }}
+    </div>
+@endif
+
+            
+            <h1 class="display-2 fw-bold text-uppercase mb-2">  
+                Benvenuto su <span class="text-warning">Presto.it</span>
+            </h1>
+            
+            <p class="lead fs-4 text-white-50 mb-0">
+                Il posto più veloce per comprare, vendere e fare affari in totale sicurezza.
+            </p>
         </div>
     </div>
+</div>
 
     <div class="container mt-5">
         <div class="row ">

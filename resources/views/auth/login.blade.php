@@ -4,10 +4,10 @@
 
 
 <div class="container ">
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center ">
         <div class="col-12 col-md-6 col-lg-5">
             
-            <div class="card shadow border-0 rounded-3 p-4 bg-white">
+            <div class="card shadow border-0 rounded-3 p-4 mt-5 bg-white">
                 <div class="card-body">
                     
                     <div class="text-center mb-4">
