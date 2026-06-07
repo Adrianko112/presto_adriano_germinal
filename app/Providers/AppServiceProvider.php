@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Paginator::useBootstrap();
+         View::composer('components.navbar', function ($view) {
+        $view->with('categories', Category::all());
+    });
     }
+
+
 }
