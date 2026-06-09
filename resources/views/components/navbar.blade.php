@@ -98,6 +98,19 @@
                         <a class="btn btn-outline-warning fw-bold px-3" href="{{ route('register') }}">Registrati</a>
                     </li>
                 @endguest
+           <li class="nav-item dropdown ms-lg-3">
+                    <a class="nav-link dropdown-toggle text-white fw-semibold text-capitalize" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-globe me-1 text-warning"></i> Lingua
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary">
+                        <li class="dropdown-item p-0"><x-_locale lang="it" />Italiano</li>
+                        <li><hr class="dropdown-divider border-secondary"></li>
+                        <li class="dropdown-item p-0"><x-_locale lang="uk" />English</li>
+                        <li><hr class="dropdown-divider border-secondary"></li>
+                        <li class="dropdown-item p-0"><x-_locale lang="es" />Español</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

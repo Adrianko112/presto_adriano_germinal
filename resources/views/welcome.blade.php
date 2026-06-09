@@ -21,11 +21,11 @@
 
             
             <h1 class="display-2 fw-bold text-uppercase mb-2">  
-                Benvenuto su <span class="text-warning">Presto.it</span>
+                {{ __('ui.benvenutoSu') }} <span class="text-warning">Presto.it</span>
             </h1>
             
             <p class="lead fs-4 text-white-50 mb-0">
-                Il posto più veloce per comprare, vendere e fare affari in totale sicurezza.
+                {{ __('ui.sottoTitolo') }}
             </p>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="row ">
             <div class="col-12">
                 <h2 class="fw-bold text-uppercase text-white border-start border-warning border-4 ps-3">
-                    Ultimi Articoli Pubblicati
+                    {{ __('ui.UltimiAnnunci') }}
                 </h2>
             </div>
         </div>
