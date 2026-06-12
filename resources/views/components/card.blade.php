@@ -9,10 +9,10 @@
       
         <div class="d-grid gap-2 mt-4">
             <a href="{{ route('article.show', $article) }}" class="btn btn-outline-warning fw-bold">
-                <i class="fas fa-eye me-2"></i>Dettaglio
+                <i class="fas fa-eye me-2"></i>{{__( 'ui.dettaglio' )}}
             </a>
             <a href="{{ route('byCategory', $article->category) }}" class="btn btn-outline-warning">
-                Categoria: {{ $article->category->name }}
+                {{__( 'ui.categorie' )}}: {{ __( "ui." . $article->category->name ) }}
             </a>
         </div>
     </div>

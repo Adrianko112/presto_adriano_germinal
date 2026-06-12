@@ -1,11 +1,11 @@
-<form class="bg-body-tertiary shadow rounded " wire:submit="store">
-    
-     @if (session()->has('success'))
+<form class="bg-body-tertiary shadow rounded" wire:submit="store">
+
+    @if (session()->has('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-     
-     @endif
+    @endif
+
     <div class="mb-3">
         <label for="title" class="form-label">Titolo:</label>
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" wire:model.live="title">
@@ -16,7 +16,7 @@
 
     <div class="mb-3">
         <label for="description" class="form-label">Descrizione:</label>
-        <textarea id="description" cols="30" rows="10" 
+        <textarea id="description" cols="30" rows="10"
                   class="form-control @error('description') is-invalid @enderror" wire:model.live="description"></textarea>
         @error('description')
             <p class="fst-italic text-danger">{{ $message }}</p>
@@ -42,6 +42,30 @@
             <p class="fst-italic text-danger">{{ $message }}</p>
         @enderror
     </div>
+
+    {{-- inserimento immagini --}}
+    <div class="mb-3">
+        <input type="file" wire:model.live="temporary_images" multiple class="form-control shadow @error('temporary_images.*') is-invalid @enderror" placeholder="Img/">
+       
+    </div>
+
+    @if (!empty($images))
+        <div class="row">
+            <div class="col-12">
+                <p>Photo preview:</p>
+                <div class="row border border-4 border-success rounded shadow py-4">
+                    @foreach ($images as $key => $image)
+                        <div class="col d-flex flex-column align-items-center my-3">
+                            <div class="img-preview mx-auto shadow rounded"
+                                style="background-image: url({{ $image->temporaryUrl() }});">
+                            </div>
+                            <button type="button" class="btn btn-danger mt-2" wire:click="removeImage({{ $key }})">Rimuovi</button>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-dark">Crea</button>

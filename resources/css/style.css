@@ -22,3 +22,12 @@ min-height: 100vh;
     min-height: 40vh; 
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.img-preview {
+    background-position: center;
+    background-repeat: no-repeat;   
+    background-size: cover;
+    width: 120px; 
+    height: 120px; 
+    
+}

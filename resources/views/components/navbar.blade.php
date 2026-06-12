@@ -7,18 +7,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('homepage') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('article.index') }}">Tutti gli Annunci</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('article.index') }}">{{__( 'ui.annunci' )}}</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorie
+                        {{__( 'ui.categorie' )}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark shadow border-secondary">
                         @foreach ($categories as $category)
                             <li>
                                 <a class="dropdown-item text-capitalize hover-warning"
                                     href="{{ route('byCategory', $category) }}">
-                                    {{ $category->name }}
+                                    {{__( "ui.$category->name" )}}
                                 </a>
                             </li>
                             @if (!$loop->last)
@@ -33,10 +33,10 @@
 
           <form class="d-flex ms-auto" role="search" action="{{ route('article.search') }}" method="GET">
     <div class="input-group">
-        <input type="search" name="query" class="form-control" placeholder="Cerca" aria-label="search">
+        <input type="search" name="query" class="form-control" placeholder="{{__( 'ui.cerca' )}}" aria-label="search">
         <button type="submit" class="input-group-text btn btn-outline-warning fw-bold"
             id="basic-addon2">
-            Cerca
+            {{__( 'ui.cerca' )}}
         </button>
     </div>
 </form>
@@ -92,16 +92,16 @@
                 {{-- 2. UTENTE OSPITE (Non Loggato) --}}
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="{{ route('login') }}">Accedi</a>
+                        <a class="nav-link me-2" href="{{ route('login') }}">{{__( 'ui.accedi' )}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-outline-warning fw-bold px-3" href="{{ route('register') }}">Registrati</a>
+                        <a class="btn btn-outline-warning fw-bold px-3" href="{{ route('register') }}">{{__( 'ui.registrati' )}}</a>
                     </li>
                 @endguest
            <li class="nav-item dropdown ms-lg-3">
                     <a class="nav-link dropdown-toggle text-white fw-semibold text-capitalize" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-globe me-1 text-warning"></i> Lingua
+                        <i class="fas fa-globe me-1 text-warning"></i> {{__( 'ui.lingua' )}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary">
                         <li class="dropdown-item p-0"><x-_locale lang="it" />Italiano</li>
