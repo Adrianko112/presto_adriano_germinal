@@ -21,4 +21,5 @@ return
     'cerca' => 'Search',
     'lingua' => 'Language',
     'dettaglio' => 'Detail',
+    'inserisci_annuncio' => 'Insert Ad',
 ];

@@ -5,6 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('homepage') }}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('article.index') }}">{{__( 'ui.annunci' )}}</a></li>
@@ -22,43 +23,62 @@
                                 </a>
                             </li>
                             @if (!$loop->last)
-                                <li>
-                                    <hr class="dropdown-divider border-secondary">
-                                </li>
+                                <li><hr class="dropdown-divider border-secondary"></li>
                             @endif
                         @endforeach
                     </ul>
                 </li>
             </ul>
 
-          <form class="d-flex ms-auto" role="search" action="{{ route('article.search') }}" method="GET">
-    <div class="input-group">
-        <input type="search" name="query" class="form-control" placeholder="{{__( 'ui.cerca' )}}" aria-label="search">
-        <button type="submit" class="input-group-text btn btn-outline-warning fw-bold"
-            id="basic-addon2">
-            {{__( 'ui.cerca' )}}
-        </button>
-    </div>
-</form>
-            <ul class="navbar-nav ms-auto align-items-center">
-                {{-- 1. UTENTE AUTENTICATO (Loggato) --}}
-                @auth
-                    <li class="nav-item me-3">
-                        <a class="btn btn-warning text-dark fw-bold px-3" href="{{ route('create.article') }}">Inserisci
-                            Annuncio</a>
-                    </li>
+            <form class="d-flex me-2 mb-2 mb-lg-0" role="search" action="{{ route('article.search') }}" method="GET">
+                <div class="input-group">
+                    <input type="search" name="query" class="form-control" placeholder="{{__( 'ui.cerca' )}}" aria-label="search">
+                    <button type="submit" class="input-group-text btn btn-outline-warning fw-bold" id="basic-addon2">
+                        {{__( 'ui.cerca' )}}
+                    </button>
+                </div>
+            </form>
 
+            <ul class="navbar-nav align-items-lg-center">
+
+                @auth
+                    <li class="nav-item mb-2 mb-lg-0">
+                        <a class="btn btn-warning text-dark fw-bold px-3" href="{{ route('create.article') }}">
+                            {{__( 'ui.inserisci_annuncio' )}}
+                        </a>
+                    </li>
+                @endauth
+
+                @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" id="userDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Ciao, {{ Auth::user()->name }}
+                            <i class="fas fa-user-circle me-1"></i>Ciao, {{ Auth::user()->name }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-menu-item dropdown-item" href="#">Il mio Profilo</a></li>
-                            <li><a class="dropdown-menu-item dropdown-item" href="#">I miei Annunci</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary" aria-labelledby="userDropdown">
+                            @if (Auth::user()->is_revisor)
+                                <li><hr class="dropdown-divider border-secondary"></li>
+                                <li>
+                                    <a class="dropdown-item d-flex justify-content-between align-items-center" href="{{ route('revisor.index') }}">
+                                        <span><i class="fas fa-user-shield me-2"></i>Zona revisore</span>
+                                        <span class="badge rounded-pill bg-danger ms-2">
+                                            {{ App\Models\Article::toBeRevisionedCount() }}
+                                        </span>
+                                    </a>
+                                </li>
+                            @endif
+
+                            <li><hr class="dropdown-divider border-secondary"></li>
+
+                            <li class="px-3 py-1">
+                                <small class="text-muted text-uppercase">{{__( 'ui.lingua' )}}</small>
                             </li>
+                            <li class="dropdown-item p-0 d-flex align-items-center"><x-_locale lang="it" /> Italiano</li>
+                            <li class="dropdown-item p-0 d-flex align-items-center"><x-_locale lang="uk" /> English</li>
+                            <li class="dropdown-item p-0 d-flex align-items-center"><x-_locale lang="es" /> Español</li>
+
+                            <li><hr class="dropdown-divider border-secondary"></li>
+
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
                                     @csrf
@@ -71,46 +91,30 @@
                         </ul>
                     </li>
                 @endauth
-                <!-- zona del revisore -->
-                @auth
-                    @if (Auth::user()->is_revisor)
-                        <li class="nav-item me-2 d-flex align-items-center">
-                            <a class="btn btn-outline-warning btn-sm fw-bold px-3 position-relative"
-                                href="{{ route('revisor.index') }}">
-                                <i class="fas fa-user-shield me-1"></i>Zona revisore
-                                <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow">
-                                    {{ App\Models\Article::toBeRevisionedCount() }}
-                                    <span class="visually-hidden">articoli da revisionare</span>
-                                </span>
 
-                            </a>
-                        </li>
-                    @endif
-                @endauth
-
-                {{-- 2. UTENTE OSPITE (Non Loggato) --}}
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link me-2" href="{{ route('login') }}">{{__( 'ui.accedi' )}}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{__( 'ui.accedi' )}}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mb-2 mb-lg-0">
                         <a class="btn btn-outline-warning fw-bold px-3" href="{{ route('register') }}">{{__( 'ui.registrati' )}}</a>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fw-semibold text-capitalize" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe me-1 text-warning"></i> {{__( 'ui.lingua' )}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary">
+                            <li class="dropdown-item p-0"><x-_locale lang="it" />Italiano</li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li class="dropdown-item p-0"><x-_locale lang="uk" />English</li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li class="dropdown-item p-0"><x-_locale lang="es" />Español</li>
+                        </ul>
+                    </li>
                 @endguest
-           <li class="nav-item dropdown ms-lg-3">
-                    <a class="nav-link dropdown-toggle text-white fw-semibold text-capitalize" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-globe me-1 text-warning"></i> {{__( 'ui.lingua' )}}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary">
-                        <li class="dropdown-item p-0"><x-_locale lang="it" />Italiano</li>
-                        <li><hr class="dropdown-divider border-secondary"></li>
-                        <li class="dropdown-item p-0"><x-_locale lang="uk" />English</li>
-                        <li><hr class="dropdown-divider border-secondary"></li>
-                        <li class="dropdown-item p-0"><x-_locale lang="es" />Español</li>
-                    </ul>
-                </li>
+
             </ul>
         </div>
     </div>

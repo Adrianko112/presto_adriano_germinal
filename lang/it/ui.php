@@ -20,4 +20,5 @@ return
      'cerca' => 'Cerca',
      'lingua' => 'Lingua',
      'dettaglio' => 'Dettaglio',
+     'inserisci_annuncio' => 'Inserisci Annuncio',
 ];
