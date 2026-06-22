@@ -27,3 +27,4 @@ Homestead.yaml
 Thumbs.db
 /storage/*.index
 /storage/indexes
+google_credential.json

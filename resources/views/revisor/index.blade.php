@@ -27,9 +27,70 @@
                         
                         @if ($article_to_check->images->count())
                             @foreach ($article_to_check->images as $key => $image)
-                                <div class="col-6 col-md-4 mb-4">
-                                    <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded shadow"
-                                        alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+                                <div class="col-12 mb-3">
+                                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                                        <div class="row g-0">
+
+                                            {{-- IMMAGINE --}}
+                                            <div class="col-md-3">
+                                                <img src="{{ $image->getUrl(300, 300) }}"
+                                                    class="img-fluid h-100 object-fit-cover"
+                                                    alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+                                            </div>
+
+                                            {{-- LABELS --}}
+                                            <div class="col-md-5 border-end">
+                                                <div class="card-body h-100 d-flex flex-column">
+                                                    <h6 class="text-uppercase fw-bold text-secondary mb-3 border-bottom pb-2">
+                                                        <i class="bi bi-tags-fill me-1 text-warning"></i> Labels
+                                                    </h6>
+                                                    @if ($image->labels)
+                                                        <div class="d-flex flex-wrap gap-1">
+                                                            @foreach ($image->labels as $label)
+                                                                <span class="badge rounded-pill bg-warning text-dark fw-normal">
+                                                                    {{ $label }}
+                                                                </span>
+                                                            @endforeach
+                                                        </div>
+                                                    @else
+                                                        <p class="fst-italic text-muted mb-0">Nessuna label disponibile</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            {{-- RATINGS --}}
+                                            <div class="col-md-4">
+                                                <div class="card-body h-100 d-flex flex-column">
+                                                    <h6 class="text-uppercase fw-bold text-secondary mb-3 border-bottom pb-2">
+                                                        <i class="bi bi-shield-fill-check me-1 text-warning"></i> Safety Ratings
+                                                    </h6>
+                                                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                                                        <li class="d-flex align-items-center gap-2">
+                                                            <i class="{{ $image->adult }} fs-5"></i>
+                                                            <span class="text-muted small">Adult</span>
+                                                        </li>
+                                                        <li class="d-flex align-items-center gap-2">
+                                                            <i class="{{ $image->violence }} fs-5"></i>
+                                                            <span class="text-muted small">Violence</span>
+                                                        </li>
+                                                        <li class="d-flex align-items-center gap-2">
+                                                            <i class="{{ $image->spoof }} fs-5"></i>
+                                                            <span class="text-muted small">Spoof</span>
+                                                        </li>
+                                                        <li class="d-flex align-items-center gap-2">
+                                                            <i class="{{ $image->racy }} fs-5"></i>
+                                                            <span class="text-muted small">Racy</span>
+                                                        </li>
+                                                        <li class="d-flex align-items-center gap-2">
+                                                            <i class="{{ $image->medical }} fs-5"></i>
+                                                            <span class="text-muted small">Medical</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         @else
